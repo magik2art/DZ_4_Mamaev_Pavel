@@ -1,7 +1,6 @@
-import datetime
 import requests
 from bs4 import BeautifulSoup
-
+import datetime
 
 def currency_rates(id_):
     global dollar
@@ -48,7 +47,6 @@ def currency_rates_name(id, name):
     Valute = name
     return Valute
 
-
 def currency_rates_date(id, date):
     url = 'http://www.cbr.ru/scripts/XML_daily.asp'
     response = requests.get(url)
@@ -58,28 +56,3 @@ def currency_rates_date(id, date):
     date = date[15:25]
     date = datetime.date(int(date[6:10]), int(date[3:5]), int(date[0:2]))
     return date
-
-
-# Использовал для тестового прогона
-
-# code_list = [["AUD"], ["AZN"], ["GBP"], ["AMD"], ["BYN"], ["BGN"], ["BRL"], ["HUF"], ["HKD"], ["DKK"]
-#              , ["USD"], ["EUR"], ["INR"], ["KZT"], ["CAD"], ["KGS"], ["CNY"], ["MDL"], ["NOK"], ["PLN"], ["PL1"]]
-# print(code_list[0][0])
-# i = 0
-# while i < len(code_list):
-#     code = code_list[i][0]
-#     i += 1
-#     price = currency_rates(code)
-#     name = "Valute"
-#     Valute_name = currency_rates_name(code, name)
-#     print("Стоимость 1 единицы валюты (" + Valute_name + ") = ", price, "рублей за 1 единицу")
-#     Date = currency_rates_date(code, name)
-#     print("Данные актуальны на дату: ", Date)
-
-code = input("Введите транскрипцию валюты(к примеру доллар - USD, а ЕВРО - EUR): ")
-price = currency_rates(code)
-name = "Valute"
-Valute_name = currency_rates_name(code, name)
-print("Стоимость 1 единицы валюты (" + Valute_name + ") = ", price, "рублей за 1 единицу")
-Date = currency_rates_date(code, name)
-print("Данные актуальны на дату: ", Date)
